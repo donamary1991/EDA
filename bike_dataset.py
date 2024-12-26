@@ -1,5 +1,3 @@
-from unicodedata import decimal
-
 import pandas as pd
 df=pd.read_csv('/home/user/Downloads/bike_sales_100k.csv')
 print(df.to_string())

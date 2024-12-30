@@ -1,0 +1,19 @@
+import pandas as pd
+df1=pd.read_csv("/home/user/Downloads/custom.txt",sep=',',header=None)
+df2=pd.read_csv("/home/user/Downloads/order.txt",sep=',',header=None)
+df1.columns=['cust_id','name','age','loc','salary']
+df2.columns=['order_id','date','cust_id','product_amount']
+df3=pd.merge(df1,df2,on='cust_id',how='inner')
+print(df3)
+# 1 name,age.loc.date,amount
+df5=pd.merge(df1,df2,on='cust_id',how='inner')[['name','age','loc','date','product_amount']]
+print(df5)
+# 2 sal above 2500 name,age,loc,sal,date,amount
+df4=df3.loc[df3['salary']>2500][['name','age','loc','salary','date','product_amount']]
+print(df4)
+#3 Latest date ==name, age sal,date,amount
+df4=df3.sort_values(by='date',ascending=False)[['name','age','salary','date','product_amount']].head(1)
+print(df4)
+# 4 Maximum age ==name,age,salary,date,amount
+df4=df3.sort_values(by='age',ascending=False)[['name','age','salary','date','product_amount']].head(1)
+print(df4)

@@ -1,0 +1,259 @@
+import pandas as pd
+
+# Load your dataset
+file_path = '/home/user/Downloads/Autoimmune_Disorder_10k_with_All_Disorders.csv'  # Replace with your file's path
+dataset = pd.read_csv(file_path)
+
+# Define the group mapping
+
+
+group_mapping = {
+
+    # Skin and Mucosal Disorders
+
+    "Linear IgA disease": "Skin and Mucosal Disorders",
+
+    "Dermatomyositis": "Skin and Mucosal Disorders",
+
+    "Bullous pemphigoid": "Skin and Mucosal Disorders",
+
+    "Epidermolysis bullosa acquisita": "Skin and Mucosal Disorders",
+
+    "Pemphigus vulgaris": "Skin and Mucosal Disorders",
+
+    "Cicatricial pemphigoid": "Skin and Mucosal Disorders",
+
+    "Gestational pemphigoid": "Skin and Mucosal Disorders",
+
+    "Psoriasis": "Skin and Mucosal Disorders",
+
+    "Lichen planus": "Skin and Mucosal Disorders",
+
+    "Lichen sclerosus": "Skin and Mucosal Disorders",
+
+    "Morphea": "Skin and Mucosal Disorders",
+
+    "Vitiligo": "Skin and Mucosal Disorders",
+
+    "Hidradenitis suppurativa": "Skin and Mucosal Disorders",
+
+    "Erythema nodosum": "Skin and Mucosal Disorders",
+
+    "Leukocytoclastic vasculitis": "Skin and Mucosal Disorders",
+
+    "Dermatitis herpetiformis": "Skin and Mucosal Disorders",
+
+    "Alopecia areata": "Skin and Mucosal Disorders",
+
+    "Autoimmune angioedema":"Skin and Mucosal Disorders",
+
+    # Endocrine Disorders
+
+    "Hashimoto's thyroiditis": "Endocrine Disorders",
+
+    "Ord's thyroiditis": "Endocrine Disorders",
+
+    "Graves' disease": "Endocrine Disorders",
+
+    "Graves' ophthalmopathy": "Endocrine Disorders",
+
+    "Addison's disease": "Endocrine Disorders",
+
+    "Diabetes mellitus type 1": "Endocrine Disorders",
+
+    "Autoimmune polyendocrine syndrome type 2 (APS2)": "Endocrine Disorders",
+
+    "Autoimmune polyendocrine syndrome type 3 (APS3)": "Endocrine Disorders",
+    "Premature ovarian failure":"Endocrine Disorders" ,
+
+    "Autoimmune polyendocrine syndrome type 1 (APS1)": "Endocrine Disorders",
+
+    # Neurological Disorders
+
+    "Multiple sclerosis": "Neurological Disorders","Idiopathic inflammatory demyelinating diseases":"Neurological Disorders","Balo concentric sclerosis":"Neurological Disorders",
+
+    "Neuromyelitis optica": "Neurological Disorders",
+
+    "Optic neuritis": "Neurological Disorders",
+
+    "Acute disseminated encephalomyelitis": "Neurological Disorders",
+
+    "Anti-NMDA receptor encephalitis": "Neurological Disorders",
+
+    "Bickerstaff's encephalitis": "Neurological Disorders",
+
+    "Sydenham's chorea": "Neurological Disorders",
+
+    "Tolosa–Hunt syndrome": "Neurological Disorders",
+
+    "Lambert–Eaton myasthenic syndrome": "Neurological Disorders",
+
+    "Myasthenia gravis": "Neurological Disorders",
+
+    "Opsoclonus myoclonus syndrome": "Neurological Disorders",
+
+    "Transverse myelitis": "Neurological Disorders",
+
+    "Acute motor axonal neuropathy": "Neurological Disorders",
+
+   "Neuromyotonia":"Neurological Disorders",
+
+   "Chronic inflammatory demyelinating polyneuropathy":"Neurological Disorders",
+    "Stiff-person syndrome":"Neurological Disorders","Guillain-Barré syndrome":"Neurological Disorders","Autoimmune encephalitis":"Neurological Disorders","Paraneoplastic cerebellar degeneration":"Neurological Disorders",
+    "Neuromyelitis optica (Devic's disease)/NMOSD":"Neurological Disorders",
+
+
+    # Gastrointestinal and Hepatic Disorders
+
+    "Celiac disease": "Gastrointestinal and Hepatic Disorders",
+
+    "Crohn's disease": "Gastrointestinal and Hepatic Disorders",
+
+    "Autoimmune hepatitis": "Gastrointestinal and Hepatic Disorders",
+
+    "Autoimmune pancreatitis": "Gastrointestinal and Hepatic Disorders",
+
+    "Primary sclerosing cholangitis": "Gastrointestinal and Hepatic Disorders",
+"Ulcerative colitis": "Gastrointestinal and Hepatic Disorders",
+"Autoimmune enteropathy":"Gastrointestinal and Hepatic Disorders",
+
+    # Joint, Muscle, and Connective Tissue Disorders
+
+    "Rheumatoid vasculitis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Lupus nephritis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Undifferentiated connective tissue disease (UCTD)": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Polymyositis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Polymyalgia rheumatica": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Polyarteritis nodosa (PAN)": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Microscopic polyangiitis (MPA)": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Eosinophilic granulomatosis with polyangiitis (EGPA)": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Takayasu's arteritis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Kawasaki disease": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Behçet's disease": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Myositis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    "Inclusion body myositis": "Joint, Muscle, and Connective Tissue Disorders",
+
+    # Hematologic and Immune System Disorders
+
+    "Pernicious anemia": "Hematologic and Immune System Disorders",
+
+    "Immune thrombocytopenia": "Hematologic and Immune System Disorders",
+
+    "Autoimmune hemolytic anemia": "Hematologic and Immune System Disorders",
+
+    "Paroxysmal nocturnal hemoglobinuria": "Hematologic and Immune System Disorders",
+
+    "Fibromyalgia": "Hematologic and Immune System Disorders",
+
+    "Autoimmune urticaria": "Hematologic and Immune System Disorders",
+"Thrombotic thrombocytopenic purpura": "Hematologic and Immune System Disorders",
+"Antiphospholipid syndrome": "Hematologic and Immune System Disorders",
+
+    # Renal and Urinary Disorders
+
+    "Membranous nephropathy": "Renal and Urinary Disorders",
+
+    "Interstitial nephritis": "Renal and Urinary Disorders",
+
+    "Interstitial cystitis": "Renal and Urinary Disorders",
+"IgA nephropathy": "Renal and Urinary Disorders",
+"Goodpasture syndrome": "Renal and Urinary Disorders",
+
+    # Ocular Disorders
+
+    "Sympathetic ophthalmia": "Ocular Disorders",
+
+    "Mooren's ulcer": "Ocular Disorders",
+
+    "Autoimmune retinopathy": "Ocular Disorders",
+
+    "Scleritis": "Ocular Disorders",
+
+    # Reproductive Disorders
+
+    "Autoimmune orchitis": "Reproductive Disorders",
+
+    "Autoimmune oophoritis": "Reproductive Disorders",
+
+    "Autoimmune progesterone dermatitis": "Reproductive Disorders",
+
+    "Endometriosis": "Reproductive Disorders",
+
+    # Respiratory and Pulmonary Disorders
+
+    "Interstitial lung disease": "Respiratory and Pulmonary Disorders",
+
+    "Idiopathic pulmonary fibrosis": "Respiratory and Pulmonary Disorders",
+
+    "Pulmonary alveolar proteinosis": "Respiratory and Pulmonary Disorders",
+
+    "Sarcoidosis": "Respiratory and Pulmonary Disorders",
+
+    "Rheumatoid lung disease": "Respiratory and Pulmonary Disorders",
+    # Grandular Disorders
+
+    "Sjögren syndrome":"Glandular Autoimmune Disorders",
+
+    # Rare and Miscellaneous Disorders
+
+    "Restless legs syndrome": "Rare and Miscellaneous Disorders",
+
+    "Susac's syndrome": "Rare and Miscellaneous Disorders",
+
+    "Hashimoto's encephalopathy": "Rare and Miscellaneous Disorders",
+#     Cardiovascular Disorders
+"Rheumatic heart disease": "Cardiovascular Disorders",
+"Vasculitis": "Cardiovascular Disorders",
+"Giant cell arteritis": "Cardiovascular Disorders",
+"Granulomatosis with polyangiitis (GPA)": "Cardiovascular Disorders",
+"Lupus vasculitis": "Cardiovascular Disorders",
+"Urticarial vasculitis": "Cardiovascular Disorders",
+"IgA vasculitis (IgAV)": "Cardiovascular Disorders",
+
+# Connective Tissue and Systemic Disorders
+
+    "Rheumatoid arthritis": "Connective Tissue and Systemic Disorders",
+    "Systemic Lupus Erythematosus": "Connective Tissue and Systemic Disorders",
+    "Discoid lupus erythematosus": "Connective Tissue and Systemic Disorders",
+    "Scleroderma (systemic sclerosis)": "Connective Tissue and Systemic Disorders",
+
+# Ophthalmologic Disorders
+
+    "Intermediate uveitis": "Ophthalmologic Disorders",
+    "Autoimmune uveitis": "Ophthalmologic Disorders",
+    "Ligneous conjunctivitis": "Ophthalmologic Disorders",
+    "Cogan syndrome":"Ophthalmologic Disorders",
+
+
+#  Normal
+    "Normal":"Normal"
+}
+
+
+
+
+# Add a 'Group' column based on the mapping
+dataset['Group'] = dataset['Diagnosis'].map(group_mapping)
+
+# Identify diseases that remain unmapped
+unmapped_diseases = dataset[dataset['Group'].isna()]['Diagnosis'].unique()
+
+# Save the updated dataset
+output_file = '/home/user/Downloads/Autoimmune_Disorder_10k_with_All_Disorders after grouping.csv'
+dataset.to_csv(output_file, index=False)
+#
+# print(f"Unmapped diseases: {unmapped_diseases}")
+# print(f"Updated dataset saved to: {output_file}")
+print(unmapped_diseases)

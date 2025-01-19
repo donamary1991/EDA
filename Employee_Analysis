@@ -1,0 +1,29 @@
+#customer5.txt
+import pandas as pd
+df=pd.read_csv('/home/user/Downloads/customer5.txt',sep=',',header=None)
+df.columns=['id','fname','lname','age','prof','loc','salary']
+print(df)
+#1. each prof count[count desc]
+print("1\n")
+df1=df.groupby('prof')['prof'].count().sort_values(ascending=False)
+print(df1)
+# 2.each prof min age[age desc]
+print("2\n")
+df1=df.groupby('prof')['age'].min().sort_values(ascending=False)
+print(df1)
+# 3.each prof max salary[sal des]
+print("3\n")
+df1=df.groupby('prof')['salary'].max().sort_values(ascending=False)
+print(df1)
+# 4.each prof total salary[salary desc]
+print("4\n")
+df1=df.groupby('prof')['age'].sum().sort_values(ascending=False)
+print(df1)
+# 5.each age group average salary
+print("5\n")
+df1=df.groupby('age')['salary'].mean()
+print(df1)
+# 6.each location total salary
+print("6\n")
+df1=df.groupby('loc')['salary'].sum().sort_values(ascending=False)
+print(df1)
